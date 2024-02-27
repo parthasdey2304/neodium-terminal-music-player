@@ -76,15 +76,29 @@ def play_music(filename):
 # Function to add a song to the playlist
 def add_to_playlist(song_name, singer, duration):
     try:
-        with open('playlist.csv', mode='a') as file:
-            # Get the current number of songs in the playlist
-            num_songs = sum(1 for line in open('playlist.csv'))
+        # Read existing playlist data
+        existing_songs = set()
+        with open('playlist.csv', mode='r') as file:
+            for line in file:
+                # Split each line and extract song details
+                _, existing_song_name, existing_singer, existing_duration = line.strip().split(', ')
+                existing_songs.add((existing_song_name, existing_singer, existing_duration))
 
-            # Write the song details to the playlist file
-            file.write(f"{num_songs + 1}, {song_name}, {singer}, {duration}\n")
-            print("Song added to playlist successfully!")
+        # Check if the song with the same singer and duration already exists
+        if (song_name, singer, duration) in existing_songs:
+            print("Song already exists in the playlist.")
+        else:
+            with open('playlist.csv', mode='a') as file:
+                # Get the current number of songs in the playlist
+                num_songs = len(existing_songs)
+
+                # Write the song details to the playlist file
+                file.write(f"{num_songs + 1}, {song_name}, {singer}, {duration}\n")
+                print("Song added to playlist successfully!")
+
     except Exception as e:
         print(f"An error occurred while adding the song to the playlist: {str(e)}")
+
 
 # Function to play the playlist
 def play_playlist():
