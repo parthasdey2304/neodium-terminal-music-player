@@ -36,7 +36,6 @@ def download_and_play_music(video_url):
     try:
         # Create a YouTube object
         yt = YouTube(video_url)
-        print("Downloading...")
 
         # Get the best audio stream
         audio_stream = yt.streams.filter(only_audio=True).first()
@@ -45,12 +44,17 @@ def download_and_play_music(video_url):
         if not os.path.exists('music'):
             os.makedirs('music')
 
-        # Download the audio stream and save it to the 'music' folder
-        print("Download completed successfully!")
-        audio_stream.download(output_path='music')
-
         # Get the filename of the downloaded audio
         audio_filename = os.path.join('music', audio_stream.default_filename)
+
+        # Check if the file already exists in the 'music' folder
+        if not os.path.exists(audio_filename):
+            # Download the audio stream and save it to the 'music' folder if it's not already present
+            print("Downloading...")
+            print("Download completed successfully!")
+            audio_stream.download(output_path='music')
+        else:
+            print("File already exists. Skipping download.")
 
         # Add the song to the playlist
         add_to_playlist(yt.title, yt.author, yt.length)
@@ -109,9 +113,9 @@ if __name__ == "__main__":
         print("No video found for the given name.")
 
     # Option to play the playlist
-    print(f"PLAYLIST\n{'-' * 15}\n")
+    print(f"\nPLAYLIST\n{'-' * 15}\n")
     os.system("tree music")
-    choice = input("\nDo you want to play the playlist? (yes/no): ").lower()
+    choice = (input("\nDo you want to play the playlist? (yes/no): ").lower()).strip()
     if choice == 'yes':
         play_playlist()
     else:
