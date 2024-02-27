@@ -110,6 +110,8 @@ if __name__ == "__main__":
         print("No video found for the given name.")
 
     # Option to play the playlist
+    print(f"PLAYLIST\n{'x' * 30}\n")
+    os.system("tree music")
     choice = input("\nDo you want to play the playlist? (yes/no): ").lower()
     if choice == 'yes':
         play_playlist()
