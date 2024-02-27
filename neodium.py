@@ -84,7 +84,6 @@ def add_to_playlist(song_name, singer, duration):
 
 # Function to play the playlist
 def play_playlist():
-    print("\n")
     try:
         with open('playlist.csv', mode='r') as file:
             lines = file.readlines()
@@ -110,7 +109,7 @@ if __name__ == "__main__":
         print("No video found for the given name.")
 
     # Option to play the playlist
-    print(f"PLAYLIST\n{'x' * 30}\n")
+    print(f"PLAYLIST\n{'-' * 15}\n")
     os.system("tree music")
     choice = input("\nDo you want to play the playlist? (yes/no): ").lower()
     if choice == 'yes':
