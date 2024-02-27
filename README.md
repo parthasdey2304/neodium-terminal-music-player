@@ -1,4 +1,5 @@
-# neodium-terminal-music-player
+<p align="center"><img src="https://skillicons.dev/icons?i=python" alt="Python" height="150px" width="150px"></p>
+<h1 align="center">Neodium Terminal Music Player</h1>
 This is a terminal based music player that uses YouTube APIs and PyTube to work! This Python script allows you to search for a song on YouTube, download its audio, add it to a playlist, and play it using the playsound library.
 
 ## Prerequisites
@@ -34,6 +35,8 @@ pip install google-api-python-client pytube playsound
 + The script requires a stable internet connection to search and download songs from YouTube.
 + Ensure that you have sufficient disk space for storing downloaded music files.
 
+## Screenshot
+![image](https://github.com/parthasdey2304/neodium-terminal-music-player/assets/131694386/ef1ca43c-ed03-47a2-91b0-0cf6764ceb2c)
 
 ## Author
 This script was developed by [Partha Sarathi Dey](https://linkedin.com/in/sarathiparth).
